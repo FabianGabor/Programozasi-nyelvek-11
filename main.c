@@ -94,7 +94,7 @@ int main()
     int a[10];
     int n = 10;
 
-    FILE *file_incr, *file_decr;
+    FILE *file_incr;
     file_incr = fopen("novekvo.dat", "w");
 
     for (int i=0; i<n; i++)
