@@ -46,9 +46,11 @@ void aPrintfRev(FILE *file_incr)
     while (ptr != NULL)
     {
         //printf("%s ", ptr);
-
-        strcpy(data[n].str_tmp,ptr);
-        n++;
+        //if (ptr != '\0')
+        {
+            strcpy(data[n].str_tmp,ptr);
+            n++;
+        }
         ptr = strtok(NULL, delim);
     }
     for (int i=n-1; i>0; i--)
@@ -88,6 +90,27 @@ void aSort(int *a, int n)
         }
 }
 
+void leghosszabb_mondat ()
+{
+    struct mondat {
+        char m[100];
+    };
+    struct mondat mondat[25];
+    char *s;
+
+    for (int i=0; i<25; i++)
+    {
+        int size = (rand() % (100 - 10 + 1)) + 10;
+        s = mondat[i].m;
+        for (int j=0; j<size; j++)
+        {
+            *(s+j) = (rand() % (90 - 65 + 1)) + 65;
+            printf("%c", s+j);
+        }
+    }
+
+}
+
 int main()
 {
     // 1. Készíts programot, ami 10 egész számot bekér billentyűzetről, növekvő sorba rendezi őket, majd bináris fájlba kiírja azokat ("növekvő.dat")!
@@ -113,6 +136,8 @@ int main()
     file_incr = fopen("novekvo.dat", "r");
     aPrintfRev(file_incr);
 
+    //3. Kérjünk be mondatokat (legfeljebb 100 karakternyit) * végjelig és a leghosszabbat írjuk ki szöveges fájlba!
+    leghosszabb_mondat();
 
     return 0;
 }
